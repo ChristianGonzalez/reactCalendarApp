@@ -2,11 +2,57 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class Calendar extends Component {
-  render() {
+class Day extends Component {
 
+  render () {
+
+    return(
+      <button className="calendar-day">
+        {this.props.value}
+      </button>
+    );
+  }
+}
+
+class Calendar extends Component {
+
+  renderDays(weekNumber) {
+    const week = weekNumber * 7
+    const dayArray = [1, 2, 3, 4, 5, 6, 7];
+
+    const days = dayArray.map((day) =>
+      <Day key={day + week} value={day + week}> </Day>
+    );
+    return days;
+  }
+  render() {
+    //Determine num weeks/days based on month/year
     return (
-      <p>Yes</p>
+      <div>
+        <div className="calendar-week">
+          {this.renderDays(0)}
+        </div>
+
+        <div className="calendar-week">
+          {this.renderDays(1)}
+        </div>
+
+        <div className="calendar-week">
+          {this.renderDays(2)}
+        </div>
+
+        <div className="calendar-week">
+          {this.renderDays(3)}
+        </div>
+
+        <div className="calendar-week">
+          {this.renderDays(4)}
+        </div>
+
+        <div className="calendar-week">
+          {this.renderDays(5)}
+        </div>
+      </div>
 
     );
   }
@@ -15,21 +61,8 @@ class Calendar extends Component {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Calendar />
       </div>
     );
   }
