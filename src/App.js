@@ -5,50 +5,69 @@ class DayEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventDescription: "",
+      events: [""],
       eventPopup: false,
+      eventEdit: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.viewEvent = this.viewEvent.bind(this);
   }
 
   handleChange(event) {
+    const eventList = this.state.events;
+    eventList[this.state.eventEdit] = event.target.value;
+
     this.setState({
-      eventDescription: event.target.value,
+      events: eventList,
       eventPopup: this.state.eventPopup,
+      eventEdit: this.state.eventEdit,
     });
   }
 
   handleSubmit(event) {
     this.setState({
-      eventDescription: this.state.eventDescription,
+      events: this.state.events,
       eventPopup: false,
+      eventEdit: 0,
     });
     event.preventDefault();
   }
 
-  viewEvent() {
+  addEvent() {
     //Pop a modal with event description that can be edited
     this.setState({
-      eventDescription: this.state.eventDescription,
+      events: this.state.events,
       eventPopup: true,
+      eventEdit: this.state.events.length,
+    });
+  }
+
+  editEvent(eventNum) {
+    this.setState({
+      events: this.state.events,
+      eventPopup: true,
+      eventEdit: eventNum,
     });
   }
 
   render() {
-    const eventDescription = this.state.eventDescription === "" ? "+" : this.state.eventDescription;
-
+    const events = this.state.events;
+    const eventList = events.map((event, index) =>
+      <button className="event-view" onClick={() => this.editEvent(index)}> {event} </button>
+    );
+    
     return(
       <div>
-        <button className="event-button" onClick={() => this.viewEvent() }>
-          {eventDescription}
+        {eventList}
+        <button className="event-button" onClick={() => this.addEvent() }>
+          +
         </button>
+
         { this.state.eventPopup &&
             <div className="event-view">
               <form onSubmit={this.handleSubmit}>
-                <textarea value={this.state.eventDescription} onChange={this.handleChange} />
+                <textarea value={this.state.events[this.state.eventEdit]} onChange={this.handleChange} />
                 <input type="submit" value="Submit" />
               </form>
             </div>
@@ -107,9 +126,6 @@ class Calendar extends Component {
           {this.renderDays(4)}
         </div>
 
-        <div className="calendar-week">
-          {this.renderDays(5)}
-        </div>
       </div>
 
     );
