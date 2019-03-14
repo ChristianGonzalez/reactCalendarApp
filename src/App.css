@@ -36,16 +36,25 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: auto;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: auto;
 }
 
 .calendar-day:focus {
   outline: none;
+}
+
+.event-button {
+  display: table;
+
+}
+
+.event-view {
+  display: table;
 }
 
 @keyframes App-logo-spin {
