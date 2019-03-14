@@ -5,7 +5,7 @@ class DayEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [""],
+      events: [],
       eventPopup: false,
       eventEdit: 0
     };
@@ -35,7 +35,6 @@ class DayEvent extends Component {
   }
 
   addEvent() {
-    //Pop a modal with event description that can be edited
     this.setState({
       events: this.state.events,
       eventPopup: true,
