@@ -23,38 +23,78 @@
   color: #61dafb;
 }
 
-.calendar-week:after {
-  clear: both;
-  content: "";
-  display: table;
+body {
+  box-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 800px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: white;
+  border: double 3px #DDD;
+  border-top: none; border-bottom: none;
 }
 
-.calendar-day {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: auto;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+textarea {
+  resize: none;
+  width: 85%;
+  height: 85%;
+}
+
+.calendar-title {
   text-align: center;
-  width: auto;
 }
 
-.calendar-day:focus {
-  outline: none;
+.current-date {
+  background-color: orange;
+}
+
+.left-arrow {
+  text-align: left;
+  display: inline;
+}
+
+.right-arrow {
+  text-align: right;
+  display: inline;
 }
 
 .event-button {
-  display: table;
+  white-space: normal;
+  word-wrap: break-word;
+  width: 70%;
 }
 
 .event-view {
   display: table;
 }
+
+/* Tables
+  by: davidelrizzo
+  https://css-tricks.com/accessible-simple-responsive-tables/
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+}
+
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  /* Default to full width*/
+  padding: 0.8em 1.2em;
+  overflow: hidden; /* Or flex might break */
+  list-style: none;
+  border: solid 3px white;
+  background: #e3ecf9;
+}
+
+/* Table column sizing
+================================== */
+.Rtable--7cols > .Rtable-cell  { width: 14.2%; }
 
 @keyframes App-logo-spin {
   from {

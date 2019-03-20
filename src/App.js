@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './event';
 
 class DayEvent extends Component {
   constructor(props) {
@@ -78,15 +79,28 @@ class DayEvent extends Component {
 
 class Day extends Component {
 
+  // constructor() {
+  //   //Store all events by day in the state
+  //   //Store as follows, so we don't have to create an associative array data structure ourselves
+  //   /*
+  //     "eventDay": {event: new Event()}
+  //   */
+
+  //   this.state = {
+  //     dayEventList: {}
+  //   };
+  // }
+
   render () {
 
     return(
-      <div className="calendar-day">
+      <div className="Rtable-cell">
         {this.props.value}
         <DayEvent/>
       </div>
     );
   }
+
 }
 
 class Calendar extends Component {
@@ -101,32 +115,40 @@ class Calendar extends Component {
     return days;
   }
 
+  goBackOneMonth() {
+
+  }
+
+  goForwardOneMonth() {
+
+  }
+
   render() {
     //Determine num weeks/days based on month/year
+    var today = new Date();
+    const monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October" , "November", "December"];
     return (
       <div>
-        <div className="calendar-week">
-          {this.renderDays(0)}
-        </div>
+        <div className="calendar-title">
+            <button className="left-arrow" onClick={() => this.goBackOneMonth()}> &#60; </button>
 
-        <div className="calendar-week">
-          {this.renderDays(1)}
-        </div>
+            {monthArray[today.getMonth()] + " " + today.getFullYear()}
 
-        <div className="calendar-week">
-          {this.renderDays(2)}
+            <button className="right-arrow" onClick={() => this.goForwardOneMonth()}> &#62; </button>
         </div>
+        <div className={`Rtable Rtable--7cols`}>
+            {this.renderDays(0)}
+          
+            {this.renderDays(1)}
+          
+            {this.renderDays(2)}
+          
+            {this.renderDays(3)}
 
-        <div className="calendar-week">
-          {this.renderDays(3)}
+            {this.renderDays(4)}
+
         </div>
-
-        <div className="calendar-week">
-          {this.renderDays(4)}
-        </div>
-
       </div>
-
     );
   }
 }
